@@ -14,7 +14,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/virtualsdb', {
 })
 
 // mongoose.set('useCreateIndex', true);
-// mongoose.set('debug', true);
+mongoose.set('debug', true);
 
 app.listen(PORT, () => {
     console.log(`App running on port ${PORT}!`)
