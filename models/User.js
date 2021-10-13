@@ -18,12 +18,16 @@ const UserSchema = new Schema(
         },
 
         thoughts: [{
-            type: mongoose.Schema.Types.ObjectId, 
-            ref: 'Thought'
-        ]},
+            type: ObjectId, 
+            ref: Thought
+        }],
 
-        friends: []
+        friends: [{ 
+            type : ObjectId, 
+            ref: this 
+        }]
     },
+
     {
         toJSON: {
             virtuals: true
@@ -32,7 +36,9 @@ const UserSchema = new Schema(
     }
 )
 
-UserSchema.virtual('friendCount').get(friends.length)
+UserSchema.virtual('friendCount').get(function() {
+    return this.friends.length
+})
 
 const User = model('User', UserSchema);
 
