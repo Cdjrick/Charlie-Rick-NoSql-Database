@@ -8,7 +8,6 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/noSqlDatabase', {
-    // useFindAndModify: false,
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
@@ -16,6 +15,8 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/noSqlDatabase',
 // mongoose.set('useCreateIndex', true);
 mongoose.set('debug', true);
 
+app.use(require('./routes'))
+
 app.listen(PORT, () => {
-    console.log(`App running on port ${PORT}!`)
+    console.log(`App running on localhost:${PORT}!`)
 })
